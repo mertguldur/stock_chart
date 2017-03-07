@@ -4,9 +4,15 @@ export default Ember.Component.extend({
 
   actions: {
     handleFilterEntry() {
-      let filterInputValue = this.get('value');
-      let filterAction = this.get('filter');
-      filterAction(filterInputValue).then((filterResults) => this.set('companies', filterResults));
+      let input = this.get('value');
+      let action = this.get('filter');
+      action(input).then((filterResults) => this.set('companies', filterResults));
+    },
+
+    handleChartButton(company) {
+      let input = this.get('name');
+      let action = this.get('fetchQuotes');
+      action(company.id).then((fetchResults) => this.set('quotes', fetchResults));
     }
   }
 

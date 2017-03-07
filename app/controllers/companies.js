@@ -11,6 +11,10 @@ export default Ember.Controller.extend({
           reject('Failed to get an empty array');
         });
       }
+    },
+
+    fetchQuotes(companyId) {
+      return this.get('store').query('quote', { company_id: companyId });
     }
   }
 });

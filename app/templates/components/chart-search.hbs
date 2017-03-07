@@ -7,12 +7,17 @@
           <tr>
             <td>{{company.symbol}}</td>
             <td>{{company.name}}</td>
-            <td><button class="btn btn-info">Chart</button></td>
+            <td><button {{action 'handleChartButton' company}} class="btn btn-info">Chart</button></td>
           </tr>
         {{/each}}
       </tbody>
     </table>
   </div>
   <div class="col-md-8">
+    <ul>
+      {{#each quotes as |quote|}}
+        <li>{{quote.date}}: Low {{quote.low}}, High {{quote.high}}, Open {{quote.open}}, Close {{quote.close}}</li>
+      {{/each}}
+    </ul>
   </div>
 </div>
