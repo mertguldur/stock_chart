@@ -14,10 +14,8 @@
     </table>
   </div>
   <div class="col-md-8">
-    <ul>
-      {{#each quotes as |quote|}}
-        <li>{{quote.date}}: Low {{quote.low}}, High {{quote.high}}, Open {{quote.open}}, Close {{quote.close}}</li>
-      {{/each}}
-    </ul>
+    {{#if quoteData}}
+      {{ember-chart type="line" data=quoteData height=200}}
+    {{/if}}
   </div>
 </div>
