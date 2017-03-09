@@ -1,16 +1,38 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  page: 1,
+  totalPages: 1,
 
   actions: {
     handleFilterEntry() {
       let input = this.get('value');
       let action = this.get('filter');
-      action(input).then((filterResults) => this.set('companies', filterResults));
+      let page = 1;
+      action(input, page).then((filterResults) => {
+        this.set('page', page);
+        let meta = filterResults.get('meta');
+        if (meta) {
+          this.set('totalPages', meta.pagination['total-pages']);
+        } else {
+          this.set('totalPages', 1);
+        }
+        this.set('companies', filterResults);
+      });
+    },
+
+    handlePageButton(direction) {
+      let input = this.get('value');
+      let action = this.get('filter');
+      let page = this.get('page');
+      page = direction === 'previous' ? page - 1 : page + 1;
+      action(input, page).then((filterResults) => {
+        this.set('page', page);
+        this.set('companies', filterResults);
+      });
     },
 
     handleChartButton(company) {
-      let input = this.get('name');
       let action = this.get('fetchQuotes');
       action(company.id).then((fetchResults) => {
         var data = {

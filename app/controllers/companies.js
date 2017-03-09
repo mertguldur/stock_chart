@@ -2,9 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    filterCompanies(param) {
+    filterCompanies(param, page) {
       if (param !== '') {
-        return this.get('store').query('company', { prefix: param });
+        return this.get('store').query('company', { prefix: param, page: page });
       } else {
         return new Promise(function(resolve, reject) {
           resolve([]);

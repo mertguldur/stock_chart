@@ -2,7 +2,12 @@
   <div class="col-md-4">
     {{input value=value key-up=(action 'handleFilterEntry') class="form-control" placeholder="Enter company name" autofocus="true"}}
     {{#if companies}}
-      <h5>Company Name Ascending</h5>
+      <div class="navigation-buttons">
+        <span class="label label-default">Page {{page}} of {{totalPages}}</span>
+        <button {{action 'handlePageButton' 'previous'}} disabled={{eq page 1}} class="btn btn-default">Previous</button>
+        <button {{action 'handlePageButton' 'next'}} disabled={{eq page totalPages}} class="btn btn-default">Next</button>
+        <h5>Company Name Ascending</h5>
+      </div>
     {{/if}}
     <table class="table table-striped">
       <tbody>
