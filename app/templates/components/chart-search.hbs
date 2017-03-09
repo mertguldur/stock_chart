@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-md-4">
     {{input value=value key-up=(action 'handleFilterEntry') class="form-control" placeholder="Enter company name" autofocus="true"}}
+    {{#if companies}}
+      <h5>Company Name Ascending</h5>
+    {{/if}}
     <table class="table table-striped">
       <tbody>
         {{#each companies as |company|}}
