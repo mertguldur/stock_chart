@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   actions: {
     handleFilterEntry() {
       let input = this.get('value');
-      let action = this.get('filter');
+      let action = this.get('filterCompanies');
       let page = 1;
       action(input, page).then((filterResults) => {
         this.set('page', page);
@@ -23,7 +23,7 @@ export default Ember.Component.extend({
 
     handlePageButton(direction) {
       let input = this.get('value');
-      let action = this.get('filter');
+      let action = this.get('filterCompanies');
       let page = this.get('page');
       page = direction === 'previous' ? page - 1 : page + 1;
       action(input, page).then((filterResults) => {
